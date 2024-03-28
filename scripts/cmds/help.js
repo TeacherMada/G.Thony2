@@ -39,7 +39,7 @@ module.exports = {
 				langs: {
 							
 								en: {
-												help: "📄LISTES COMMANDES\n\n▪︎Prefix: %5\n      ↪%6\n\n%1\n\n▪︎Page [ %2/%3 ]\n Actuellement, J'ai %4 Commandes \n\n 📜 » Tapez %5help 2 \n 📃 » Tapez %5help 3 \n\n \n",
+												help: "📄LISTES COMMANDES\n\n▪︎Prefix: %5\n      ↪%6\n\n%1\n\n▪︎Page [ %2/%3 ]\n Actuellement, J'ai %4 Commandes \n\n ⏭ » Tapez %5help 2 \n 🆓️ » Commande gratuite\n👑 » Commande VIP\n 👨‍💻 » Commande Admin\n 👨‍🔧 » Commande dev",
 												help2: "%1├───────⭔\n│ » Actuellement, j'ai %2 commandes \n│ » Tapez %3help  1\n│ %4\n╰─────────────⭓",
 												commandNotFound: "La Commande《%1》n'existe pas!",
 												getInfoCommand: "╭── NAME ────⭓\n│ %1\n├── INFO\n│ Description: %2\n│ Other names: %3\n│ Other names in your group: %4\n│ Version: %5\n│ Role: %6\n│ Time per command: %7s\n│ Author: %8\n├── Usage\n%9\n├── Notes\n│ The content inside <XXXXX> can be changed\n│ The content inside [a|b|c] is a or b or c\n╰──────⭔",
@@ -106,7 +106,7 @@ module.exports = {
 
 																const returnArray = allPage[page - 1] || [];
 																const startNumber = (page - 1) * numberOfOnePage + 1;
-																msg += (returnArray || []).reduce((text, item, index) => text += `╭─❍\n➠ ${index + startNumber}${index + startNumber < 10 ? " " : ""}%5${item.data}\n╰───────────⟡\n`, '').slice(0, -1);
+																msg += (returnArray || []).reduce((text, item, index) => text += `╭─❍\n➠ ${index + startNumber}${index + startNumber < 10 ? " " : ""} ${prefix}${item.data}\n╰───────────⟡\n`, '').slice(0, -1);
 																await message.reply(getLang("help", msg, page, totalPage, commands.size, prefix, doNotDelete));
 												}
 												else if (sortHelp == "category") {
