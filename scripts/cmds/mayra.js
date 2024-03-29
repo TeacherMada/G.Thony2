@@ -1,20 +1,9 @@
-// add this in new code ↓
-const axios = require("axios");
-const fs = require("fs");
-const path = require("path");
-const vipData = fs.readFileSync(path.join(__dirname, "vip.json"), "utf8");
-const vipJson = JSON.parse(vipData);
-function isVip(senderID) {
-  return vipJson.permission.includes(senderID.toString());
-}
-// add this in new code ↑                                              
-
 module.exports = {
 	config: {
 		name: 'mayra',
 		version: '2.5.4',
 		author: 'Deku', // credits owner of this api
-		role: 0,
+		role: 2,
 		category: 'Ai',
 		shortDescription: {
 			en: '[👑] Mayra Ai  pro',
@@ -25,11 +14,7 @@ module.exports = {
 	},
 
 	onStart: async function ({ api, event, args }) {
-		 if (!isVip(event.senderID)) {
-      api.sendMessage("Vous n'avez pas le droit d'utiliser cette commande. \n\n👑 ABONNEMENT VIP 5000Ar/mois \n 038.22.222.02 \n\nVeuillez Contacter mon Admin: 👇 \n https://www.facebook.com/profile.php?id=100088104908849", event.threadID, event.messageID);
-      return;
-    }
-    
+	 
 // normal code ↓
    
     const axios = require("axios");
@@ -43,6 +28,7 @@ module.exports = {
  -Ex: #mayra Faites cet exercice`, event.threadID);
 		api.sendTypingIndicator(event.threadID);
 		try {
+api.setMessageReaction("⏳", event.messageID, (err) => console.log(err), true);
 			const geminiApi = `https://gemini-api.replit.app`;
 			if (event.type == "message_reply") {
 				if (event.messageReply.attachments[0]?.type == "photo") {
@@ -54,6 +40,7 @@ module.exports = {
 				}
 			}
 			const response = (await axios.get(`${geminiApi}/gemini?prompt=${prompt}&uid=${uid}`)).data;
+api.setMessageReaction("✅", event.messageID, (err) => console.log(err), true);
 			return api.sendMessage(response.gemini, event.threadID);
 		} catch (error) {
 			console.error(error);
