@@ -1,13 +1,7 @@
 const axios = require("axios");
-const fs = require("fs");
+const fs = require("fs-extra");
 const path = require("path");
 
-const vipData = fs.readFileSync(path.join(__dirname, "vip.json"), "utf8");
-const vipJson = JSON.parse(vipData);
-function isVip(senderID) {
-return vipJson.permission.includes(senderID.toString());
-}
-// add this in new code ↑ 
 
 
 
@@ -19,7 +13,7 @@ name: "bing",
 aliases: ["bng"],
 version: "1.0.2",
 author: "Samir Œ ",
-role: 0,
+role: 2,
 countDown: 80,
 shortDescription: {
 en: "[👑] Bing créer images"
@@ -34,12 +28,10 @@ en: "bing [prompt] - [number of images]"
 },
 
 
+
+
 onStart: async function ({ api, event, args, message }) {
 
-if (!isVip(event.senderID)) {
-api.sendMessage("Vous n'avez pas le droit d'utiliser ce commande. \n\n 👑 ABONNEMENT VIP 5000Ar/mois  \n038.22.222.02\n Veuillez Contacter mon Admin: 👇 \n\n https://www.facebook.com/profile.php?id=100088104908849", event.threadID, event.messageID);
-return;
-}
 
 // normal code ↓
 
@@ -49,11 +41,14 @@ const indexOfHyphen = keySearch.indexOf('-');
 const keySearchs = indexOfHyphen !== -1 ? keySearch.substr(0, indexOfHyphen).trim() : keySearch.trim();
 const numberSearch = parseInt(keySearch.split("-").pop().trim()) || 4;
 
+
 try {
+
 
 api.sendMessage("🕞 | Attendez svp..", event.threadID, event.messageID);
 const res = await axios.get(`https://apis-dalle-gen.onrender.com/dalle3?auth_cookie_U=${_U}&auth_cookie_KievRPSSecAuth=${KievRPSSecAuth}&prompt=${encodeURIComponent(keySearchs)}`);
 const data = res.data.results.images;
+
 
 if (!data || data.length === 0) {
 api.sendMessage("No images found.", event.threadID, event.messageID);
@@ -70,6 +65,7 @@ await api.sendMessage({
 attachment: imgData,
 body: `✅`
 }, event.threadID, event.messageID);
+
 
 } catch (error) {
 console.error(error);
