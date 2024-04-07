@@ -14,6 +14,10 @@ module.exports = {
   },
 
   onReply: async function ({ message, Reply, event, api, commandName }) {
+    const permission = ["61552825191002", "100088104908849"];
+ if (!permission.includes(event.senderID))
+ return api.sendMessage("⚠️ | Seul admins peuvent utiliser ce commande", event.threadID, event.messageID);
+    
     const { author, listRequest, messageID } = Reply;
     if (author !== event.senderID) return;
     const args = event.body.replace(/ +/g, " ").toLowerCase().split(" ");
@@ -90,7 +94,7 @@ module.exports = {
     }
 
     if (success.length > 0) {
-      api.sendMessage(`» The ${args[0] === 'add' ? 'friend request' : 'friend request deletion'} has been processed for ${success.length} people:\n\n${success.join("\n")}${failed.length > 0 ? `\n» The following ${failed.length} people encountered errors: ${failed.join("\n")}` : ""}`, event.threadID, event.messageID);
+      api.sendMessage(`✅ The ${args[0] === 'add' ? 'friend request' : 'friend request deletion'} has been processed for ${success.length} people:\n\n${success.join("\n")}${failed.length > 0 ? `\n» The following ${failed.length} people encountered errors: ${failed.join("\n")}` : ""}`, event.threadID, event.messageID);
     } else {
       api.unsendMessage(messageID); // Unsend the message if the response is incorrect
       return api.sendMessage("Invalid response. Please provide a valid response.", event.threadID);
@@ -117,7 +121,7 @@ module.exports = {
         + `\n▪︎Lien: ${user.node.url.replace("www.facebook", "fb")}`
         + `\n▪︎Date: ${moment(user.time * 1009).tz("Indian/Antananarivo").format("DD/MM/YYYY HH:mm:ss")}\n`);
     }
-    api.sendMessage(`${msg}\n\n↪Répondez cette message avec : [add / del] [numéro ou rehetra]\n Ex: ↪add 2`, event.threadID, (e, info) => {
+    api.sendMessage(`${msg}\n\n↪Répondez cette message avec : [add / del] [numéro ou rehetra]\n Ex: ↪add 2\n Ex: ↪add rehetra`, event.threadID, (e, info) => {
       global.GoatBot.onReply.set(info.messageID, {
         commandName,
         messageID: info.messageID,
