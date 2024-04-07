@@ -50,7 +50,7 @@ module.exports = {
       form.doc_id = "4108254489275063";
     }
     else {
-      return api.sendMessage("Please select <add | del > <target number | or \"all\">", event.threadID, event.messageID);
+      return api.sendMessage("↪Choisissez [add / del] [numéro | rehetra]", event.threadID, event.messageID);
     }
 
     let targetIDs = args.slice(1);
@@ -97,7 +97,7 @@ module.exports = {
       api.sendMessage(`✅ The ${args[0] === 'add' ? 'friend request' : 'friend request deletion'} has been processed for ${success.length} people:\n\n${success.join("\n")}${failed.length > 0 ? `\n» The following ${failed.length} people encountered errors: ${failed.join("\n")}` : ""}`, event.threadID, event.messageID);
     } else {
       api.unsendMessage(messageID); // Unsend the message if the response is incorrect
-      return api.sendMessage("Invalid response. Please provide a valid response.", event.threadID);
+      return api.sendMessage("❎Invalid response. Please provide a valid response.", event.threadID);
     }
 
     api.unsendMessage(messageID); // Unsend the message after it has been processed
@@ -116,12 +116,12 @@ module.exports = {
     let i = 0;
     for (const user of listRequest) {
       i++;
-      msg += (`\n${i}• \n▪︎Anarana: ${user.node.name}`
+      msg += (`\n${i} 👇 \n▪︎Anarana: ${user.node.name}`
         + `\n▪︎ID: ${user.node.id}`
         + `\n▪︎Lien: ${user.node.url.replace("www.facebook", "fb")}`
         + `\n▪︎Date: ${moment(user.time * 1009).tz("Indian/Antananarivo").format("DD/MM/YYYY HH:mm:ss")}\n`);
     }
-    api.sendMessage(`${msg}\n\n↪Répondez cette message avec : [add / del] [numéro ou rehetra]\n Ex: ↪add 2\n Ex: ↪add rehetra`, event.threadID, (e, info) => {
+    api.sendMessage(`📄LISTE DEMANDE D'AMIS📄 \n\n${msg}\n\n↪Répondez cette message avec : [add / del] [numéro ou rehetra]\n Ex: ↪add 2\n Ex: ↪add rehetra`, event.threadID, (e, info) => {
       global.GoatBot.onReply.set(info.messageID, {
         commandName,
         messageID: info.messageID,
