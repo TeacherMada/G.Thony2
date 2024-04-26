@@ -3,7 +3,7 @@ const { writeFileSync } = require("fs-extra");
 
 module.exports = {
 	config: {
-		name: "vip",
+		name: "vp",
 		version: "1.6",
 		author: "NTKhang",
 		countDown: 5,
@@ -14,9 +14,9 @@ module.exports = {
 		},
 		category: "Admin",
 		guide: {
-			en: ' #vip add id (Add vip role for user)'
-				+ '\n	  #vip remove id (Remove vip role of user)'
-				+ '\n	  #vip list (List all vip)'
+			en: ' #vp add id (Add vp role for user)'
+				+ '\n	  #vp remove id (Remove vip role of user)'
+				+ '\n	  #vp list (List all vip)'
 		}
 	},
 
@@ -24,10 +24,10 @@ module.exports = {
 			en: {
 			added: "✅ | Added VIP role for %1 users:\n%2",
 			alreadyAdmin: "\n⚠️ | %1 users already have VIP role:\n%2",
-			missingIdAdd: "⚠️ | Syntax error. \n #vip add ID",
+			missingIdAdd: "⚠️ | Syntax error. \n\n #vp add ID_User",
 			removed: "✅ | Removed VIP role of %1 users:\n%2",
 			notAdmin: "⚠️ | %1 users don't have VIP role:\n%2",
-			missingIdRemove: "⚠️ | Syntax error. \n #vip remove ID",
+			missingIdRemove: "⚠️ | Syntax error. \n #vp remove ID",
 			listAdmin: "👑 | LISTE MEMBRE VIP:\n%1"
 		}
 	},
