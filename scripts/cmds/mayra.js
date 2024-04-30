@@ -4,38 +4,31 @@ const path = require('path');
 const ytdl = require("ytdl-core");
 const yts = require("yt-search");
 
-
 async function lado(api, event, args, message) {
   try {
     const songName = args.join(" ");
     const searchResults = await yts(songName);
-
 
     if (!searchResults.videos.length) {
       message.reply("No song found for the given query.");
       return;
     }
 
-
     const video = searchResults.videos[0];
     const videoUrl = video.url;
     const stream = ytdl(videoUrl, { filter: "audioonly" });
     const fileName = `music.mp3`; 
     const filePath = path.join(__dirname, "tmp", fileName);
-
-
+    
     stream.pipe(fs.createWriteStream(filePath));
-
 
     stream.on('response', () => {
       console.info('[DOWNLOADER]', 'Starting download now!');
     });
 
-
     stream.on('info', (info) => {
       console.info('[DOWNLOADER]', `Downloading ${info.videoDetails.title} by ${info.videoDetails.author.name}`);
     });
-
 
     stream.on('end', () => {
       const audioStream = fs.createReadStream(filePath);
@@ -48,18 +41,15 @@ async function lado(api, event, args, message) {
   }
 }
 
-
 async function kshitiz(api, event, args, message) {
   try {
     const query = args.join(" ");
     const searchResults = await yts(query);
 
-
     if (!searchResults.videos.length) {
       message.reply("No videos found for the given query.");
       return;
     }
-
 
     const video = searchResults.videos[0];
     const videoUrl = video.url;
@@ -67,19 +57,15 @@ async function kshitiz(api, event, args, message) {
     const fileName = `music.mp4`;
     const filePath = path.join(__dirname, "tmp", fileName);
 
-
     stream.pipe(fs.createWriteStream(filePath));
-
 
     stream.on('response', () => {
       console.info('[DOWNLOADER]', 'Starting download now!');
     });
 
-
     stream.on('info', (info) => {
       console.info('[DOWNLOADER]', `Downloading ${info.videoDetails.title} by ${info.videoDetails.author.name}`);
     });
-
 
     stream.on('end', () => {
       const videoStream = fs.createReadStream(filePath);
@@ -92,7 +78,6 @@ async function kshitiz(api, event, args, message) {
   }
 }
 
-
 async function b(c, d, e, f) {
   try {
     const g = await axios.get(`https://gemini-ai-pearl-two.vercel.app/kshitiz?prompt=${encodeURIComponent(c)}&uid=${d}&apikey=kshitiz`);
@@ -102,7 +87,6 @@ async function b(c, d, e, f) {
   }
 }
 
-
 async function i(c) {
   try {
     const j = await axios.get(`https://sdxl-kshitiz.onrender.com/gen?prompt=${encodeURIComponent(c)}&style=3`);
@@ -111,7 +95,6 @@ async function i(c) {
     throw k;
   }
 }
-
 
 async function describeImage(prompt, photoUrl) {
   try {
@@ -123,7 +106,6 @@ async function describeImage(prompt, photoUrl) {
   }
 }
 
-
 async function l({ api, message, event, args }) {
   try {
     const m = event.senderID;
@@ -131,7 +113,6 @@ async function l({ api, message, event, args }) {
     let draw = false;
     let sendTikTok = false;
     let sing = false;
-
 
     if (args[0].toLowerCase() === "draw") {
       draw = true;
@@ -152,12 +133,9 @@ async function l({ api, message, event, args }) {
       n = args.join(" ").trim();
     }
 
-
     if (!n) {
-      return message.reply("1- #Mayra [Questions] 
-2- #mayra [répondre une photo] [Questions]");
+      return message.reply(`1- #Mayra [Questions] \n2- #mayra [répondre une photo] [Questions]`);
     }
-
 
     if (draw) {
       await drawImage(message, n);
