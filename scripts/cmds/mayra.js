@@ -200,7 +200,7 @@ const a = {
   version: "4.0",
   author: "vex_kshitiz",
   countDown: 35,
-  role: 0,
+  role: 2,
   shortDescription: "[👑] Mayra Ai Pro",
   category: "ai",
   guide: {
