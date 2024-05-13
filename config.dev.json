@@ -1,7 +1,7 @@
 {
 	"facebookAccount": {
-		"email": "",
-		"password": "",
+		"email": "0382222203",
+		"password": "thony raz tr!",
 		"2FASecret": "",
 		"i_user": "",
 		"proxy": null,
@@ -71,9 +71,9 @@
 		"notes": "you can set time is interval with milisecond or cron time, example: 1000, 10000, 60000, 3600000, 86400000, 0 0 * * *,... docs: https://www.npmjs.com/package/node-cron. If you set time is 0 or false or null, the bot will not auto restart"
 	},
 	"autoUptime": {
-		"enable": false,
+		"enable": true,
 		"timeInterval": 180,
-		"url": "",
+		"url": "https://g-thony2.onrender.com",
 		"notes": "the value of timeInterval is seconds, url is the url you want to send the request to (automatically detected for hosting glitch or replit)"
 	},
 	"autoLoadScripts": {
@@ -83,8 +83,8 @@
 		"notes": "this feature will automatically load the script when scripts have been changed, you can set ignoreCmds to ignore commands, ignoreEvents to ignore events, separate by comma or space, example: \"cmd1.js cmd2.js cmd3.js\" (without backslash)"
 	},
 	"autoRefreshFbstate": true,
-	"autoReloginWhenChangeAccount": false,
-	"autoRestartWhenListenMqttError": false,
+	"autoReloginWhenChangeAccount": true,
+	"autoRestartWhenListenMqttError": true,
 	"restartListenMqtt": {
 		"enable": true,
 		"timeRestart": 3600000,
@@ -139,8 +139,8 @@
 		"logLevel": "error",
 		"selfListen": false,
 		"selfListenEvent": true,
-		"autoMarkDelivery": false,
-		"autoReconnect": false,
+		"autoMarkDelivery": true,
+		"autoReconnect": true,
 		"notes": "Document here: https://github.com/ntkhang03/fb-chat-api/blob/master/DOCS.md#apisetoptionsoptions "
 	}
 }
