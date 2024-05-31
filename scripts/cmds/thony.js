@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const ArYAN = ['thony', 'gpt', 'ai'];
+const ArYAN = ['thony', 'tonny', 'thonny'];
 
 module.exports = {
   config: {
