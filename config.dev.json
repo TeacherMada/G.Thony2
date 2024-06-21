@@ -61,7 +61,7 @@
     }
   },
   "autoRestart": {
-    "time": false,
+    "time": 3600000,
     "notes": "you can set time is interval with milisecond or cron time, example: 1000, 10000, 60000, 3600000, 86400000, 0 0 * * *,... docs: https://www.npmjs.com/package/node-cron. If you set time is 0 or false or null, the bot will not auto restart"
   },
   "autoUptime": {
@@ -76,7 +76,7 @@
     "ignoreEvents": "",
     "notes": "this feature will automatically load the script when scripts have been changed, you can set ignoreCmds to ignore commands, ignoreEvents to ignore events, separate by comma or space, example: \"cmd1.js cmd2.js cmd3.js\" (without backslash)"
   },
-  "autoRefreshFbstate": true,
+  "autoRefreshFbstate": false,
   "autoReloginWhenChangeAccount": false,
   "autoRestartWhenListenMqttError": false,
   "restartListenMqtt": {
